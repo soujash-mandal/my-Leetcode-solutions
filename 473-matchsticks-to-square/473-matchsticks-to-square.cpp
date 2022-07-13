@@ -9,80 +9,21 @@ public:
         
         if(a>sum || b>sum || c>sum || d>sum) return false;
         
-        if(a==b && b==c && c==d)
-        {
-            return fun(matchsticks,a+matchsticks[n-1],b,c,d,n-1);
-        }
         
-        if(a==b &&b==c)
-        {
-            bool res=false;
-            res=res|fun(matchsticks,a+matchsticks[n-1],b,c,d,n-1);
-            res=res|fun(matchsticks,a,b,c,d+matchsticks[n-1],n-1);
-            
-            return res;
-        }
-        if(a==c && c==d)
-        {
-            bool res=false;
-            res=res|fun(matchsticks,a+matchsticks[n-1],b,c,d,n-1);
-            res=res|fun(matchsticks,a,b+matchsticks[n-1],c,d,n-1);
-            
-            return res;
-        }
-        if(a==b && b==d)
-        {
-            bool res=false;
-            res=res|fun(matchsticks,a+matchsticks[n-1],b,c,d,n-1);
-            res=res|fun(matchsticks,a,b,c+matchsticks[n-1],d,n-1);
-            
-            return res;
-        }
-        if(b==c && c==d)
-        {
-            bool res=false;
-            res=res|fun(matchsticks,a+matchsticks[n-1],b,c,d,n-1);
-            res=res|fun(matchsticks,a,b,c+matchsticks[n-1],d,n-1);
-            
-            return res;
-        }
-        
-        // ********************************************************************
-        
-        if(a==b && c==d)
-        {
-            bool res=false;
-            res=res|fun(matchsticks,a+matchsticks[n-1],b,c,d,n-1);
-            res=res|fun(matchsticks,a,b,c+matchsticks[n-1],d,n-1);
-            
-            return res;
-        }
-        
-        if(a==c && b==d)
-        {
-            bool res=false;
-            res=res|fun(matchsticks,a+matchsticks[n-1],b,c,d,n-1);
-            res=res|fun(matchsticks,a,b+matchsticks[n-1],c,d,n-1);
-            
-            return res;
-        }
-        if(a==d && b==c)
-        {
-            bool res=false;
-            res=res|fun(matchsticks,a+matchsticks[n-1],b,c,d,n-1);
-            res=res|fun(matchsticks,a,b+matchsticks[n-1],c,d,n-1);
-            
-            return res;
-        }
         
         bool res=false;
         res=res|fun(matchsticks,a+matchsticks[n-1],b,c,d,n-1);
         if(res) return true;
-        res=res|fun(matchsticks,a,b+matchsticks[n-1],c,d,n-1);
+        
+        if(b!=a) res=res|fun(matchsticks,a,b+matchsticks[n-1],c,d,n-1);
         if(res) return true;
-        res=res|fun(matchsticks,a,b,c+matchsticks[n-1],d,n-1);
+        
+        
+        if(c!=a && c!=b) res=res|fun(matchsticks,a,b,c+matchsticks[n-1],d,n-1);
         if(res) return true;
-        res=res|fun(matchsticks,a,b,c,d+matchsticks[n-1],n-1);
+        
+        if(d!=c && d!=a && d!=b)res=res|fun(matchsticks,a,b,c,d+matchsticks[n-1],n-1);
+        
         if(res) return true;
         
         return false;
