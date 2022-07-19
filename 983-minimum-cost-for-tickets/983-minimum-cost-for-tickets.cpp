@@ -10,19 +10,13 @@ public:
             dp[days[i]]++;
         }
         
-        // for(int i=1;i<=365;i++)
-        // {
-        //     dp[i]+=dp[i-1];
-        // }
-        
-        // for(int i=0;i<=20;i++) cout<<dp[i]<<" ";
         
         for(int i=1;i<=365;i++)
         {
-            if(dp[i])
-            {
-                int a=dp[i-1]+costs[0];
-                
+            int a;
+            if(dp[i]) a=dp[i-1]+costs[0];  
+            else a=dp[i-1];
+            
                 dp[i]=a;
                 
                 int ib=max(i-7,0);
@@ -34,30 +28,10 @@ public:
                 int c=dp[ic]+costs[2];
 
                 dp[i]=min(dp[i],c);
-            }
-            else
-            {
-                int a=dp[i-1];
-                
-                dp[i]=a;
-                
-                int ib=max(i-7,0);
-                int b=dp[ib]+costs[1];
-
-                dp[i]=min(dp[i],b);
-
-                int ic=max(i-30,0);
-                int c=dp[ic]+costs[2];
-
-                dp[i]=min(dp[i],c);
-            }
                 
             
             
         }
-        // cout<<endl;
-        // for(int i=0;i<=20;i++) cout<<dp[i]<<" ";
-        
         return dp[365];
         
     }
