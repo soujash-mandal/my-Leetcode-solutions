@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //lee ka solution
     int longestIdealString(string s, int k) {
         int dp[150] = {}, res = 0;
         for (auto& i : s) {
