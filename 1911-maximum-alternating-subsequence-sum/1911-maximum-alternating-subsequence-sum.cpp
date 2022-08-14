@@ -13,8 +13,15 @@ public:
             if(nums[i]!=nums[i-1]) v.push_back(nums[i]);
         }
         
+        // 5 5 5 4 4 4 6 6 6 -> 5 4 6
+        // converting nums vector like this
+        
+        
         nums=v;
         n=nums.size();
+        
+        if(n==1) return nums[0];// if only one element exist return that
+        
         
         if(n>1 && nums[0]>nums[1]) up.push_back(nums[0]);
         if(n>1 && nums[n-1]>nums[n-2]) up.push_back(nums[n-1]);
@@ -30,13 +37,22 @@ public:
                 up.push_back(nums[i]);
             }
         }
-        long long res=nums[0];
+        // saved every peak in up vector and down one in down vector
+        // 1 2 3 6 3 2 7 8 9 5 2 1 4
+        // 6 2 9 1 4
+        // this is my maximum alternating sum subsequence
+        // up  -> 6 9 4
+        // down-> 2 1
         
-        long long sum=0;
-        for(int i=0;i<up.size();i++)sum+=up[i];
-        for(int i=0;i<down.size();i++) sum-=down[i];
+        // ans= sum(up)-sum(down);
         
         
-        return max(sum,res);
+        
+        long long res=0;
+        for(int i=0;i<up.size();i++)res+=up[i];
+        for(int i=0;i<down.size();i++) res-=down[i];
+        
+        
+        return res;
     }
 };
