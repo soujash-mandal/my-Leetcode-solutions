@@ -3,7 +3,7 @@ public:
     int maximumScore(vector<int>& nums, vector<int>& mul) {
         int n=nums.size();
         int m=mul.size();
-        vector<vector<int>> dp(m+10,vector<int> (m+10,-1));
+        vector<vector<int>> dp(m+1,vector<int> (m+1,-1));
         dp[m][0]=0;
         for(int i=m-1;i>=0;i--)
         {
