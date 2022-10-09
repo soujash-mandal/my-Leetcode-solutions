@@ -22,18 +22,21 @@ public:
     bool findTarget(TreeNode* root, int k) {
         vector<int> v;
         in(root,v);
-        set<int> s;
-        s.insert(v[0]);
         
-        for(int i=1;i<v.size();i++)
+        int l=0;
+        int r=v.size()-1;
+        
+        while(r>l)
         {
-            auto it=s.lower_bound(k-v[i]);
-            if(it!=s.end())
+            if(v[l]+v[r]==k) return true;
+            else if(v[l]+v[r]>k)
             {
-                if(*it+v[i]==k) return true;
+                r--;
             }
-            s.insert(v[i]);
-            
+            else
+            {
+                l++;
+            }
         }
         
         return false;
